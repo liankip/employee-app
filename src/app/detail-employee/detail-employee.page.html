@@ -1,0 +1,61 @@
+<ion-header translucent>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Detail Pegawai</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen class="ion-padding">
+  <!-- Detail single Pegawai -->
+  <ion-list>
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>
+          <ion-icon name="person"></ion-icon> {{employee?.name}}
+        </ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        <p>{{employee?.email}}</p>
+        <p>{{employee?.mobile}}</p>
+        <p>{{employee?.salary}}</p>
+        <p>{{employee?.joinDate}}</p>
+        <p>{{employee?.address}}</p>
+        <p>{{employee?.extraInfo}}</p>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-row>
+      <ion-col>
+        <ion-button type="submit" [routerLink]="['/add-experience', id]" color="primary" shape="full" expand="block">
+          <ion-icon name="add"></ion-icon>
+          Tambah
+          Pengalaman Kerja
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-list>
+
+  <!-- List Pengalaman Pegawai -->
+  <ion-list>
+    <ion-list-header>
+      Pengalaman Kerja
+    </ion-list-header>
+
+    <div *ngFor="let experience of Experiences">
+      <ion-item *ngIf="experience.employeeId === id" class="user-list">
+        <ion-label>
+          <h1>
+            {{experience.title}}
+          </h1>
+          <h2>{{experience.company}}</h2>
+          <h3>{{experience.yFirst}} - {{experience.yEnd}}</h3>
+          <p>{{experience.description}}</p>
+        </ion-label>
+      </ion-item>
+    </div>
+
+  </ion-list>
+</ion-content>

@@ -1,0 +1,41 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-title>Pegawai</ion-title>
+    <ion-buttons (click)="authService.SignOut()" slot="end">
+      <ion-icon style="zoom:2.0" name="log-out-outline"></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <!-- Daftar Pegawai -->
+  <ion-list>
+    <ion-list-header>
+      Daftar Pegawai
+    </ion-list-header>
+
+    <ion-item *ngFor="let employee of Employees" class="user-list">
+      <ion-label [routerLink]="['/detail-employee/', employee.$key]">
+        <h1>
+          <ion-icon name="person"></ion-icon> {{employee.name}}
+        </h1>
+      </ion-label>
+
+      <div class="item-note" item-end>
+        <ion-button ion-button [routerLink]="['/edit-employee/', employee.$key]">
+          <ion-icon name="create-outline" style="zoom:1.0"></ion-icon>
+        </ion-button>
+        <ion-button (click)="deleteEmployee(employee.$key, employee.name)">
+          <ion-icon name="trash-outline" style="zoom:1.0"></ion-icon>
+        </ion-button>
+      </div>
+    </ion-item>
+  </ion-list>
+
+  <!-- Add Employee -->
+  <ion-fab vertical="bottom" routerLink="/add-employee" horizontal="end" slot="fixed">
+    <ion-fab-button>
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>
